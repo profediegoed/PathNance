@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tareas y Rutas</title>
+    <link rel="stylesheet" href="./path.css">
+</head>
+<body>
+    <header>
+        <img src="../img/logoHeader.png" alt="Home" onclick="goHome()">
+        <div class="central-progress-bar"><span id="centralProgress"></span></div>
+        <img src="user_profile.png" alt="Perfil">
+    </header>
+    <div class="content">
+        <div class="left-panel">
+            <h2>Rutas</h2>
+            <div id="rutas"></div>
+        </div>
+        <div class="right-panel">
+            <div class="tasks-panel">
+                <h2>Tareas</h2>
+                <div id="tasks"></div>
+                <div class="secondary-progress-bar"><span id="secondaryProgress"></span></div>
+            </div>
+            <div class="ranking-panel">
+                <h2>Ranking</h2>
+                <!-- Aquí puedes agregar el contenido del ranking -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        let rutas = [];
+        let currentRouteIndex = -1;
+        let currentTasks = [];
+
+        function goHome() {
+            // Lógica para ir a la página principal
+        }
+
+        function loadTasks(showCheckboxes = true) {
+            const tasksContainer = document.getElementById('tasks');
+            tasksContainer.innerHTML = '';
+            currentTasks.forEach((task, index) => {
+                const taskItem = document.createElement('div');
+                taskItem.classList.add('task-item');
+                taskItem.innerHTML = showCheckboxes
+                    ? `
+                        <input type="checkbox" id="task${index}" onchange="completeTask(${index})" ${task.completed ? 'checked' : ''}>
+                        <div class="task-desc" onclick="editTask(${index}, this)">
+                            <span>${task.description}</span>
+                        </div>
+                    `
+                    : `<span>${task.description}</span>`;
+                tasksContainer.appendChild(taskItem);
+            });
+        }
+
+        function completeTask(index) {
+            const checkbox = document.getElementById(`task${index}`);
+            currentTasks[index].completed = checkbox.checked;
+            updateSecondaryProgress();
+        }
+
+        function editTask(index, element) {
+            const currentDesc = currentTasks[index].description;
+            element.innerHTML = `<input type="text" value="${currentDesc}" onblur="saveTask(${index}, this.value)">`;
+            const input = element.querySelector('input');
+            input.focus();
+        }
+
+        function saveTask(index, value) {
+            currentTasks[index].description = value;
+            loadTasks();  // Recargar tareas para volver a mostrar el texto en vez del input
+        }
+
+        function updateSecondaryProgress() {
+            const completedTasks = currentTasks.filter(task => task.completed).length;
+            const percentage = (completedTasks / currentTasks.length) * 100;
+            document.getElementById('secondaryProgress').style.width = `${percentage}%`;
+
+            if (completedTasks === currentTasks.length) {
+                saveRoute();
+            }
+        }
+
+        function saveRoute() {
+            rutas.push({
+                id: rutas.length + 1,
+                tasks: currentTasks
+            });
+            startNewRoute();
+        }
+
+        function startNewRoute() {
+            // Crear tareas con descripciones personalizadas
+            updateRutas();
+            updateCentralProgress();
+            loadTasks();
+        }
+
+        function updateRutas() {
+            const rutasContainer = document.getElementById('rutas');
+            rutasContainer.innerHTML = '';
+            rutas.forEach(ruta => {
+                const rutaItem = document.createElement('div');
+                rutaItem.classList.add('ruta-item');
+                if (currentRouteIndex === ruta.id) rutaItem.classList.add('completed');
+                rutaItem.innerHTML = `Ruta ${ruta.id}`;
+                rutaItem.onclick = () => loadRuta(ruta.id);
+                rutasContainer.appendChild(rutaItem);
+            });
+        }
+
+        function loadRuta(id) {
+            const ruta = rutas.find(r => r.id === id);
+            if (ruta) {
+                currentTasks = ruta.tasks;
+                loadTasks(false);  // Mostrar las tareas completadas sin checkbox
+                document.getElementById('secondaryProgress').style.width = '100%';
+                currentRouteIndex = id;
+                updateRutas();
+            }
+        }
+
+        function updateCentralProgress() {
+            const completedRoutes = rutas.length;
+            const totalRoutes = 10; // Ejemplo, puede cambiarse
+            const percentage = (completedRoutes / totalRoutes) * 100;
+            document.getElementById('centralProgress').style.width = `${percentage}%`;
+        }
+
+        // Inicializar la primera ruta con tareas personalizadas
+        startNewRoute();
+    </script>
+</body>
+</html>

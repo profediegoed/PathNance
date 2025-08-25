@@ -1,0 +1,251 @@
+/* Estilos generales --------------------------------------------- */
+body, html {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Georgia, serif; 
+    overflow-x: hidden;
+    text-align: center;
+    background-color:#154f04; 
+}
+
+header img {
+    cursor: pointer;
+    width: 230px;
+    height: 40px;
+}
+
+/* Botones */
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+.log button {
+    height: 40px;
+    width: 110px;
+    margin-left: 15px; 
+    padding: 12px 24px;
+    background: #55a38b;
+    border: none;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    color: #ffffff;
+}
+
+.log button:hover {
+    background-color: #3f7a69;
+    transform: scale(0.9); 
+}
+
+/* Header */
+header {
+    position: sticky;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #ffffff; 
+    padding: 10px; 
+    box-shadow: 0 2px 4px #00000086; 
+}
+
+#home-button {
+    height: 100px; 
+}
+
+/* Carruseles */
+.carousel-container, .buttons-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    margin: 20px 0;
+}
+
+.carousel, .buttons {
+    position: relative;
+    width: 90%;
+    max-width: 1200px;
+    overflow: hidden;
+    padding: 20px 0;
+    background-color: #ffffff;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1); 
+    border-radius: 10px; 
+}
+
+.carousel h2, .carousel h4 {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.carousel-inner {
+    display: flex;
+    transition: transform 0.5s ease;
+    gap: 20px;
+}
+
+.carousel-item {
+    min-width: 200px;
+    transition: transform 0.5s ease, filter 0.5s ease; 
+    border-radius: 10px; 
+}
+
+.carousel-item img {
+    position: relative;
+    width: 100%;
+    border-radius: 10px;
+    display: block;
+    transition: transform 0.5s ease, filter 0.5s ease; 
+}
+
+.carousel-item:hover img {
+    transform: scale(1.05); 
+    filter: brightness(1.2); 
+}
+
+.prev, .next {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: #ffffff;
+    border: none;
+    color: #000000;
+    padding: 10px;
+    cursor: pointer;
+    font-size: 24px;
+    border-radius: 50%;
+    transition: background-color 0.3s ease, transform 0.3s ease; 
+    z-index: 1;
+}
+
+.prev:hover, .next:hover {
+    color: #ffffff;
+    background-color: #55a38b;
+}
+
+.prev {
+    left: 20px; 
+}
+
+.next {
+    right: 20px; 
+}
+
+/* Estilos de botones adicionales */
+.buttons-container {
+    margin-top: 30px;
+}
+
+.buttons-inner {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+.button-item {
+    cursor: pointer;
+    text-align: center;
+    transition: transform 0.3s ease;
+}
+.button-item{
+    height: 80;
+    width: 150;
+}
+.button-item img {
+    width: 50%;
+    max-width: 150px;
+    gap: 5px;
+    transition: transform 0.5s ease, filter 0.5s ease; 
+}
+
+.button-item p {
+    margin: 0;
+    font-size: 16px;
+    color: #333;
+}
+
+.button-item:hover img {
+    transform: scale(1.1);
+    filter: brightness(1.2);
+}
+
+.button-item:hover {
+    transform: scale(1.05);
+}
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+    .carousel-item {
+        min-width: 150px;
+    }
+
+    .log button {
+        padding: 8px 16px;
+    }
+
+    #home-button {
+        height: 40px;
+    }
+
+    .button-item img {
+        max-width: 100px;
+    }
+}
+
+@media (max-width: 480px) {
+    .carousel-item {
+        min-width: 100px;
+    }
+
+    .log button {
+        padding: 6px 12px;
+    }
+
+    #home-button {
+        height: 30px;
+    }
+
+    .button-item img {
+        max-width: 80px;
+    }
+}
+
+/* Barra de progreso */
+.bar {
+    width: 50%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.xp-bar-container {
+    width: 100%;
+    background-color: #ddd;
+    border-radius: 20px;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.xp-bar {
+    height: 30px;
+    width: 0;
+    background-color: #4caf50;
+    border-radius: 20px 0 0 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-weight: bold;
+    transition: width 0.5s ease-in-out;
+}

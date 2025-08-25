@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Tareas y Rutas</title>
+    <link rel="stylesheet" href="adminPath.css">
+</head>
+<body>
+    <header>
+        <img src="../img/logoHeader.png" id="Home" onclick="goHome()">
+        <div class="central-progress-bar"><span id="centralProgress"></span></div>
+        <img id="user"src="../img/user.png" alt="Perfil">
+    </header>
+    <div class="content">
+        <div class="left-panel">
+            <h2>Niveles de Pobreza</h2>
+            <div id="povertyLevels">
+                <!-- Botones de nivel de pobreza -->
+            </div>
+        </div>
+        <div class="right-panel">
+            <div class="routes-container">
+                <h2>Rutas</h2>
+                <div id="rutas"></div>
+            </div>
+            <div class="tasks-container">
+                <h2>Tareas</h2>
+                <div id="tasks"></div>
+                <button id="confirmButton" class="confirm-button" onclick="confirmTasks()">Confirmar</button>
+            </div>
+        </div>
+    </div>
+    <script src="adminPath.js"></script>
+</body>
+</html>

@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es" dir="ltr">
+<head>
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0">
+  <meta charset="utf-8">
+  <link rel="stylesheet" type="text/css" href="./main.css">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+  <div class="main">
+    <div class="container a-container" id="a-container">
+      <form class="form" id="a-form" method="" action="">
+        <h2 class="form_title title">Crea tu cuenta </h2> <br>
+        <a href="https://accounts.google.com/signin" target="_blank">
+          <button class="social-button google" type="button">
+            <svg class="svg" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 488 512">
+              <path d="M488 261.8C488 403.3 391.1 504 248 504C110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
+            </svg>
+          </button>
+        </a>
+        <span class="form__span">conectate con tu cuenta de google <br> o ingresa los datos a continuacion:</span>
+        <input class="form__input" id="nombre" type="text" placeholder="nombre">
+        <input class="form__input" id="correo" type="email" placeholder="correo">
+        <input class="form__input" id="contrasena" type="password" placeholder="contrasena">
+        <p class="mensaje" id="mensaje"></p>
+        <button class="form__button button submit" type="button" id="signUp" onclick="registrar()">CREAR</button>
+      </form>
+    </div>
+    <div class="container b-container is-hidden" id="b-container">
+      <form class="form" id="b-form" method="" action="">
+        <h2 class="form_title title">Ingresa</h2><br />
+        <a href="https://accounts.google.com/signin" target="_blank">
+          <button class="social-button google" type="button" >
+            <svg class="svg" xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 488 512">
+              <path d="M488 261.8C488 403.3 391.1 504 248 504C110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"></path>
+            </svg>
+          </button>
+        </a>
+        <span class="form__span">conectate con tu cuenta</span>
+        <input class="form__input" id="signInEmail" type="text" placeholder="Email">
+        <input class="form__input" id="signInPassword" type="password" placeholder="Password">
+        <p class="mensaje" id="Mensaje"></p>
+        <button class="form__button button submit" type="button" id="signIn" onclick="validarLogin()">INGRESAR</button>
+      </form>
+    </div>
+    <img class="home_ic" src="/frontend/img/logoHeader.png" alt="Logo">
+    <div class="switch" id="switch-cnt">
+      <div class="switch__circle"></div>
+      <div class="switch__circle switch__circle--t"></div>
+      <div class="switch__container" id="switch-c1">
+        <h2 class="switch__title title">Ya tienes una cuenta?</h2><br>
+        <p class="switch__description description">Ingresa aqui con tu cuenta </p>
+        <button class="switch__button button switch-btn" id="switchToSignIn">INGRESAR</button>
+      </div>
+      <div class="switch__container is-hidden" id="switch-c2">
+        <h2 id="switch__title title" class="switch__title title">No tienes una cuenta?</h2><br>
+        <p class="switch__description description">crea tu cuenta aqui</p>
+        <button class="switch__button button switch-btn" id="switchToSignUp" >CREAR CUENTA</button>
+      </div>
+    </div>
+  </div>
+  <script src="./login.js"></script>
+  <script>
+function registrar() {
+    const nombre = document.getElementById('nombre').value.trim();
+    const correo = document.getElementById('correo').value.trim();
+    const contrasena = document.getElementById('contrasena').value.trim();
+    const mensajeElem = document.getElementById('mensaje');
+
+    // Validación de campos vacíos
+    if (!nombre) {
+        mensajeElem.innerText = 'Nombre es requerido.';
+        return;
+    }
+    if (!correo) {
+        mensajeElem.innerText = 'Correo es requerido.';
+        return;
+    }
+    if (!contrasena) {
+        mensajeElem.innerText = 'Contraseña es requerida.';
+        return;
+    }
+
+    // Enviar datos al servidor
+    fetch('http://localhost:4000/registro', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ nombre, correo, contrasena })
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.NombreR) {
+            mensajeElem.innerText = data.NombreR;
+        } else if (data.EmailR) {
+            mensajeElem.innerText = data.EmailR;
+        } else if (data.mensaje) {
+            mensajeElem.innerText = data.mensaje;
+            // Redirigir después de un breve retraso
+            setTimeout(() => {
+                window.location.href = "../cuestionario/cuestio.html";
+            }, 1000);
+        } else {
+            mensajeElem.innerText = 'Error desconocido';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        mensajeElem.innerText = 'Hubo un problema con el registro.';
+    });
+}
+
+function validarLogin() {
+    const correo = document.getElementById('signInEmail').value.trim();
+    const contrasena = document.getElementById('signInPassword').value.trim();
+
+    // Validar campos vacíos
+    if (!correo || !contrasena) {
+        document.getElementById('Mensaje').innerText = 'Correo y contraseña son requeridos.';
+        return;
+    }
+
+    fetch('http://localhost:4000/login', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ correo, contrasena })
+    })
+    .then(response => {
+        if (!response.ok) {
+            return response.json().then(errorData => {
+                throw new Error(errorData.error || 'Error en la respuesta del servidor');
+            });
+        }
+        return response.json();
+    })
+    .then(data => {
+        console.log('Respuesta del servidor:', data); // Para depuración
+
+        const mensajeElem = document.getElementById('Mensaje');
+
+        if (data.correoInvalido) {
+            mensajeElem.innerText = data.correoInvalido;
+        } else if (data.contrasenaInvalida) {
+            mensajeElem.innerText = data.contrasenaInvalida;
+        } else if (data.token) {
+            // Guardar el token en localStorage
+            localStorage.setItem('authToken', data.token);
+            localStorage.setItem('idUsuario', data.idUsuario); // Guardar el idUsuario
+            localStorage.setItem('idRol', data.idRol); // Guardar el idRol
+            localStorage.setItem('isAdmin', data.isAdmin); // Guardar el estado de admin
+
+            mensajeElem.innerText = 'Login exitoso';
+
+            // Redirigir a la página adecuada basado en el rol del usuario
+            setTimeout(() => {
+                const isAdmin = data.isAdmin; // Obtener el estado de admin
+                const redirectUrl = isAdmin 
+                    ? "../admin/adminPath.html" 
+                    : "../PATH/paht.html"; // Ajusta según tu estructura
+                console.log('Redirigiendo a:', redirectUrl); // Para verificar la URL de redirección
+                window.location.href = redirectUrl;
+            }, 1000);
+        } else {
+            mensajeElem.innerText = data.error || 'Error desconocido';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        document.getElementById('Mensaje').innerText = 'Hubo un problema con el login.';
+    });
+}
+
+
+
+  </script>
+
+</body>
+</html>
+

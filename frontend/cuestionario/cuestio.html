@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Actividad de Ejercicios</title>
+  <link rel="stylesheet" href="./cuestio.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img class="home_ic" src="/frontend/img/logoHeader.png" alt="Logo">
+    </header>
+
+    <div class="preguntas" id="question1-container">
+      <h2>Pregunta 1: ¿Cuál es el ingreso mensual de su hogar?</h2>
+      <label><input type="radio" id="q1a" name="q1" value="4"> a) Menos de 1 salario mínimo</label>
+      <label><input type="radio" id="q1b" name="q1" value="3"> b) Entre 1 y 2 salarios mínimos</label>
+      <label><input type="radio" id="q1c" name="q1" value="2"> c) Entre 2 y 3 salarios mínimos</label>
+      <label><input type="radio" id="q1d" name="q1" value="1"> d) Más de 3 salarios mínimos</label>
+      <button onclick="nextQuestion(1)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question2-container" style="display: none;">
+      <h2>Pregunta 2: ¿Tiene acceso a un empleo formal?</h2>
+      <label><input type="radio" id="q2a" name="q2" value="4"> a) No, estoy desempleado</label>
+      <label><input type="radio" id="q2b" name="q2" value="3"> b) No, tengo un empleo informal</label>
+      <label><input type="radio" id="q2c" name="q2" value="2"> c) Sí, empleo temporal</label>
+      <label><input type="radio" id="q2d" name="q2" value="1"> d) Sí, empleo fijo</label>
+      <button class="siguiente" onclick="nextQuestion(2)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question3-container" style="display: none;">
+        <h2>Pregunta 3: ¿Tiene acceso a servicios básicos (agua, electricidad, saneamiento)?</h2>
+        <input type="radio" id="q3a" name="q3" value="4"> a) No tengo acceso a ninguno<br>
+        <input type="radio" id="q3b" name="q3" value="3"> b) Solo a uno<br>
+        <input type="radio" id="q3c" name="q3" value="2"> c) A dos de ellos<br>
+        <input type="radio" id="q3d" name="q3" value="1"> d) A los tres servicios<br>
+        <button class="siguiente" onclick="nextQuestion(3)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question4-container" style="display: none;">
+        <h2>Pregunta 4: ¿Cuál es el nivel educativo más alto alcanzado por el jefe del hogar?</h2>
+        <input type="radio" id="q4a" name="q4" value="4"> a) Ninguno o primaria incompleta<br>
+        <input type="radio" id="q4b" name="q4" value="3"> b) Primaria completa<br>
+        <input type="radio" id="q4c" name="q4" value="2"> c) Secundaria completa<br>
+        <input type="radio" id="q4d" name="q4" value="1"> d) Educación superior<br>
+        <button class="siguiente" onclick="nextQuestion(4)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question5-container" style="display: none;">
+        <h2>Pregunta 5: ¿Cuál es el estado de las paredes de su vivienda?</h2>
+        <input type="radio" id="q5a" name="q5" value="4"> a) Materiales improvisados<br>
+        <input type="radio" id="q5b" name="q5" value="3"> b) Materiales poco duraderos<br>
+        <input type="radio" id="q5c" name="q5" value="2"> c) Materiales duraderos pero deteriorados<br>
+        <input type="radio" id="q5d" name="q5" value="1"> d) Materiales duraderos en buen estado<br>
+        <button class="siguiente" onclick="nextQuestion(5)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question6-container" style="display: none;">
+        <h2>Pregunta 6: ¿Tiene su hogar acceso a servicios de salud?</h2>
+        <input type="radio" id="q6a" name="q6" value="4"> a) No tiene acceso<br>
+        <input type="radio" id="q6b" name="q6" value="3"> b) Acceso limitado<br>
+        <input type="radio" id="q6c" name="q6" value="2"> c) Acceso pero con restricciones económicas<br>
+        <input type="radio" id="q6d" name="q6" value="1"> d) Acceso completo y sin restricciones<br>
+        <button onclick="nextQuestion(6)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question7-container" style="display: none;">
+        <h2>Pregunta 7: ¿Padece usted o algún miembro del hogar alguna enfermedad crónica?</h2>
+        <input type="radio" id="q7a" name="q7" value="4"> a) Sí, sin tratamiento<br>
+        <input type="radio" id="q7b" name="q7" value="3"> b) Sí, con tratamiento pero insuficiente<br>
+        <input type="radio" id="q7c" name="q7" value="2"> c) Sí, con tratamiento adecuado<br>
+        <input type="radio" id="q7d" name="q7" value="1"> d) No, ninguna enfermedad crónica<br>
+        <button class="siguiente" onclick="nextQuestion(7)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question8-container" style="display: none;">
+        <h2>Pregunta 8: ¿Cómo describiría la estabilidad laboral de los miembros del hogar en edad de trabajar?</h2>
+        <input type="radio" id="q8a" name="q8" value="4"> a) Muy inestable<br>
+        <input type="radio" id="q8b" name="q8" value="3"> b) Algo inestable<br>
+        <input type="radio" id="q8c" name="q8" value="2"> c) Estable pero con riesgos<br>
+        <input type="radio" id="q8d" name="q8" value="1"> d) Muy estable<br>
+        <button onclick="nextQuestion(8)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question9-container" style="display: none;">
+        <h2>Pregunta 9: ¿Cuál es el tipo de empleo predominante en su hogar?</h2>
+        <input type="radio" id="q9a" name="q9" value="4"> a) Ninguno<br>
+        <input type="radio" id="q9b" name="q9" value="3"> b) Informal<br>
+        <input type="radio" id="q9c" name="q9" value="2"> c) Temporal<br>
+        <input type="radio" id="q9d" name="q9" value="1"> d) Formal<br>
+        <button onclick="nextQuestion(9)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question10-container" style="display: none;">
+        <h2>Pregunta 10: ¿Tiene acceso a transporte público cercano?</h2>
+        <input type="radio" id="q10a" name="q10" value="4"> a) No tengo acceso<br>
+        <input type="radio" id="q10b" name="q10" value="3"> b) Acceso limitado<br>
+        <input type="radio" id="q10c" name="q10" value="2"> c) Acceso regular<br>
+        <input type="radio" id="q10d" name="q10" value="1"> d) Acceso total<br>
+        <button class="siguiente" onclick="nextQuestion(10)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question11-container" style="display: none;">
+        <h2>Pregunta 11: ¿Tiene acceso a servicios de telecomunicaciones (internet, teléfono)?</h2>
+        <input type="radio" id="q11a" name="q11" value="4"> a) No tiene acceso<br>
+        <input type="radio" id="q11b" name="q11" value="3"> b) Acceso limitado<br>
+        <input type="radio" id="q11c" name="q11" value="2"> c) Acceso pero con restricciones económicas<br>
+        <input type="radio" id="q11d" name="q11" value="1"> d) Acceso completo<br>
+        <button onclick="nextQuestion(11)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question12-container" style="display: none;">
+        <h2>Pregunta 12: ¿Cuántas personas dependen económicamente del ingreso del hogar?</h2>
+        <input type="radio" id="q12a" name="q12" value="4"> a) Más de 5<br>
+        <input type="radio" id="q12b" name="q12" value="3"> b) Entre 3 y 5<br>
+        <input type="radio" id="q12c" name="q12" value="2"> c) 1 o 2<br>
+        <input type="radio" id="q12d" name="q12" value="1"> d) Ninguna<br>
+        <button onclick="nextQuestion(12)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question13-container" style="display: none;">
+        <h2>Pregunta 13: ¿El hogar cuenta con seguro de salud?</h2>
+        <input type="radio" id="q13a" name="q13" value="4"> a) Ningún miembro cuenta con seguro<br>
+        <input type="radio" id="q13b" name="q13" value="3"> b) Solo algunos miembros<br>
+        <input type="radio" id="q13c" name="q13" value="2"> c) La mayoría pero no todos<br>
+        <input type="radio" id="q13d" name="q13" value="1"> d) Todos cuentan con seguro<br>
+        <button class="siguiente" onclick="nextQuestion(13)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question14-container" style="display: none;">
+        <h2>Pregunta 14: ¿Qué tan segura es la zona donde vive?</h2>
+        <input type="radio" id="q14a" name="q14" value="4"> a) Muy insegura<br>
+        <input type="radio" id="q14b" name="q14" value="3"> b) Algo insegura<br>
+        <input type="radio" id="q14c" name="q14" value="2"> c) Relativamente segura<br>
+        <input type="radio" id="q14d" name="q14" value="1"> d) Muy segura<br>
+        <button class="siguiente" onclick="nextQuestion(14)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question15-container" style="display: none;">
+        <h2>Pregunta 15: ¿Cuántos adultos mayores de 65 años viven en su hogar?</h2>
+        <input type="radio" id="q15a" name="q15" value="4"> a) Ninguno<br>
+        <input type="radio" id="q15b" name="q15" value="3"> b) 1<br>
+        <input type="radio" id="q15c" name="q15" value="2"> c) 2<br>
+        <input type="radio" id="q15d" name="q15" value="1"> d) Más de 2<br>
+        <button class="siguiente" class="siguiente" onclick="nextQuestion(15)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question16-container" style="display: none;">
+        <h2>Pregunta 16: ¿Cuenta su hogar con un vehículo propio?</h2>
+        <input type="radio" id="q16a" name="q16" value="4"> a) No<br>
+        <input type="radio" id="q16b" name="q16" value="3"> b) Sí, pero en mal estado<br>
+        <input type="radio" id="q16c" name="q16" value="2"> c) Sí, en estado regular<br>
+        <input type="radio" id="q16d" name="q16" value="1"> d) Sí, en buen estado<br>
+        <button class="siguiente" onclick="nextQuestion(16)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question17-container" style="display: none;">
+        <h2>Pregunta 17: ¿Cómo describiría la calidad del aire en su zona?</h2>
+        <input type="radio" id="q17a" name="q17" value="4"> a) Muy mala<br>
+        <input type="radio" id="q17b" name="q17" value="3"> b) Mala<br>
+        <input type="radio" id="q17c" name="q17" value="2"> c) Regular<br>
+        <input type="radio" id="q17d" name="q17" value="1"> d) Buena<br>
+        <button class="siguiente" onclick="nextQuestion(17)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question18-container" style="display: none;">
+        <h2>Pregunta 18: ¿Qué tan accesible es la educación en su zona?</h2>
+        <input type="radio" id="q18a" name="q18" value="4"> a) Muy difícil de acceder<br>
+        <input type="radio" id="q18b" name="q18" value="3"> b) Algo difícil de acceder<br>
+        <input type="radio" id="q18c" name="q18" value="2"> c) Relativamente accesible<br>
+        <input type="radio" id="q18d" name="q18" value="1"> d) Muy accesible<br>
+        <button class="siguiente" onclick="nextQuestion(18)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question19-container" style="display: none;">
+        <h2>Pregunta 19: ¿Tiene su hogar acceso a crédito o financiamiento?</h2>
+        <input type="radio" id="q19a" name="q19" value="4"> a) No tiene acceso<br>
+        <input type="radio" id="q19b" name="q19" value="3"> b) Acceso limitado<br>
+        <input type="radio" id="q19c" name="q19" value="2"> c) Acceso con restricciones económicas<br>
+        <input type="radio" id="q19d" name="q19" value="1"> d) Acceso completo<br>
+        <button class="siguiente" onclick="nextQuestion(19)">Siguiente</button>
+    </div>
+
+    <div class="preguntas" id="question20-container" style="display: none;">
+        <h2>Pregunta 20: ¿Considera que su hogar está en riesgo de desalojo?</h2>
+        <input type="radio" id="q20a" name="q20" value="4"> a) Muy alto riesgo<br>
+        <input type="radio" id="q20b" name="q20" value="3"> b) Algo de riesgo<br>
+        <input type="radio" id="q20c" name="q20" value="2"> c) Bajo riesgo<br>
+        <input type="radio" id="q20d" name="q20" value="1"> d) Ningún riesgo<br>
+        <button class="siguiente" onclick="showResults()">Finalizar</button>
+    </div>
+
+    <div id="results-container" style="display: none;">
+      <h2>Resultados</h2>
+      <p id="result"></p>
+      <button onclick="Irpath()">IR</button>
+    </div>
+  </div>
+
+  <script src="./cuestio.js"></script>
+  <script>
+    function Irpath() {
+        window.location.href = '//frontend/index.html';
+    };
+    </script>
+</body>
+</html>
+

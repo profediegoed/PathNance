@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./styles.css">
+    <title>Home</title>
+</head>
+<body>
+    <header>
+        <a href="./index.html">
+            <img onclick="casa()" src="./img/logoHeader.png" alt="Home" id="home-button">
+        </a>
+        <div class="bar">
+            <h2>CrecerApp</h2>
+            <div class="xp-bar-container">
+                <div class="xp-bar" id="xp-bar">
+                    <span id="xp-text"></span>
+                </div>
+            </div> 
+        </div>   
+        <div class="log">
+            <button >ENTRAR</button>
+        </div>
+    </header>
+
+    <div class="carousel-container">
+        <div class="carousel" id="dynamic-carousel">
+            <h2 id="carousel-title">Bienvenido a CrecerApp</h2>
+            <h4 id="carousel-sub">Tu Ruta a la prosperidad</h4>
+            <div class="carousel-inner"> 
+                <!-- Carrusel dinámico -->
+            </div>
+            <section id="botones"></section>
+        </div>
+    </div>
+
+    <div class="buttons-container">
+        <div class="buttons" id="botones">
+            <h2>Selecciona una categoría</h2>
+            <div class="buttons-inner">
+                <div class="button-item" onclick="changeCarouselContent('vivienda')">
+                    <img title="vivienda" src="./img/categorias/vivienda.png" alt="Vivienda" class="button-img">
+                </div>
+                <div class="button-item" onclick="changeCarouselContent('educacion')">
+                    <img title="Educacion" src="./img/categorias/educacion.png" alt="Educación" class="button-img">
+                </div>
+                <div class="button-item" onclick="changeCarouselContent('salud')">
+                    <img title="salud" src="./img/categorias/salud.png" alt="Salud" class="button-img">
+                </div>
+                <div class="button-item" onclick="changeCarouselContent('Tm')">
+                    <img title="transferencia Monetaria" src="./img/categorias/tm.png" alt="transferencia Monetaria" class="button-img">
+
+                </div>
+                <div class="button-item" onclick="changeCarouselContent('creditos')">
+                    <img title="creditos" src="./img/categorias/creditos.png" alt="Creditos" class="button-img">
+                </div>
+                <div class="button-item" onclick="changeCarouselContent('Otros')">
+                    <img title="otros" src="./img/categorias/otros.png" alt="Otros" class="button-img">
+                </div>
+            </div> 
+        </div>
+    </div>
+    <script src="./links.js"></script>
+    <script src="./script.js"></script>
+</body>
+</html>
